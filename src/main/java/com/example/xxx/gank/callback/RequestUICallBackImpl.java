@@ -3,6 +3,9 @@ package com.example.xxx.gank.callback;
 
 import com.example.xxx.gank.base.BaseView;
 
+import retrofit2.Call;
+import retrofit2.Response;
+
 /**
  * Created by space on 16/6/15.
  */
@@ -35,26 +38,27 @@ public class RequestUICallBackImpl implements RequestUICallBack {
     /**
      * 请求错误调用
      *
-     * @param errorCode 错误代码
-     * @param errorData
+     * @param call
+     * @param t
      */
     @Override
-    public void requestError(String errorCode, Object errorData) {
-        requestUICallBack.requestError(errorCode,errorData);
+    public void requestError(Call call, Throwable t) {
+        requestUICallBack.requestError(call,t);
     }
 
     /**
      * 请求成功调用
      *
-     * @param data 数据
+     * @param call
+     * @param response
      */
     @Override
-    public void requestSuccess(Object data) {
-        if (mView == null) {
+    public void requestSuccess(Call call, Response response) {
+        if (mView==null){
             return;
         }
 
-        requestUICallBack.requestSuccess(data);
-
+        requestUICallBack.requestSuccess(call,response);
     }
+
 }

@@ -2,13 +2,14 @@ package com.example.xxx.gank.base;
 
 
 import com.example.xxx.gank.callback.RequestUICallBack;
-import com.orhanobut.logger.Logger;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
- *
  * Created by space on 16/3/29.
  */
-public class BasePresenterImpl<T extends BaseView> implements BasePresenter,RequestUICallBack {
+public class BasePresenterImpl<T extends BaseView> implements BasePresenter, RequestUICallBack {
 
     public T mView;
 
@@ -23,12 +24,12 @@ public class BasePresenterImpl<T extends BaseView> implements BasePresenter,Requ
 
     @Override
     public void onDestroy() {
-        mView=null;
+        mView = null;
     }
 
     @Override
     public void setView(Object view) {
-        mView= (T) view;
+        mView = (T) view;
     }
 
     @Override
@@ -42,15 +43,13 @@ public class BasePresenterImpl<T extends BaseView> implements BasePresenter,Requ
     }
 
     @Override
-    public void requestError(String errorCode, Object errorData) {
-        Logger.i("request Error", errorCode);
-        mView.toast(errorCode);
+    public void requestError(Call call, Throwable t) {
         mView.hideProgress();
     }
 
     @Override
-    public void requestSuccess(Object data) {
-
+    public void requestSuccess(Call call, Response response) {
+        mView.hideProgress();
     }
 
     public T getmView() {

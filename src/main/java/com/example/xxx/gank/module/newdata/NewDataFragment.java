@@ -4,16 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.xxx.gank.R;
 import com.example.xxx.gank.annotation.ActivityFragmentInject;
 import com.example.xxx.gank.base.BaseFragment;
+import com.example.xxx.gank.module.newdata.presenter.NewDataPresenterImpl;
+import com.example.xxx.gank.module.newdata.view.NewDataView;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -25,9 +23,7 @@ import butterknife.ButterKnife;
  * create an instance of this fragment.
  */
 @ActivityFragmentInject(contentViewId = R.layout.fragment_new_data)
-public class NewDataFragment extends BaseFragment {
-
-
+public class NewDataFragment extends BaseFragment<NewDataPresenterImpl> implements NewDataView{
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -43,14 +39,6 @@ public class NewDataFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NewDataFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static NewDataFragment newInstance(String param1) {
         NewDataFragment fragment = new NewDataFragment();
@@ -60,13 +48,21 @@ public class NewDataFragment extends BaseFragment {
         return fragment;
     }
 
+    public static NewDataFragment newInstance() {
+        NewDataFragment fragment = new NewDataFragment();
+        return fragment;
+    }
+
     @Override
     protected void initView(View fragmentRootView) {
         ButterKnife.bind(this, fragmentRootView);
 
+        mPresenter=new NewDataPresenterImpl(this);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
         }
+
+        mPresenter.refresh();
 
     }
 
@@ -94,18 +90,16 @@ public class NewDataFragment extends BaseFragment {
         mListener = null;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-
-        return rootView;
-    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void notifyAdapter() {
+
     }
 
     /**

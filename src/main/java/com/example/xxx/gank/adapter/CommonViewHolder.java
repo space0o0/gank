@@ -1,4 +1,4 @@
-package com.example.xxx.gank.base;
+package com.example.xxx.gank.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,8 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by space on 2017/2/22.
@@ -47,5 +49,35 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
 
         return (T) view;
     }
+
+    /**
+     * 设置textview显示内容
+     *
+     * @param viewId textview的id int
+     * @param text   显示内容 string
+     * @return 当前textview
+     */
+    public TextView setText(int viewId, String text) {
+
+        TextView tv = getView(viewId);
+        tv.setText(text);
+
+        return tv;
+    }
+
+    /**
+     * 设置imageview的资源
+     *
+     * @param viewId imageview的id int
+     * @param res    图片资源 int
+     * @return 当前imageview
+     */
+    public ImageView setImageResource(int viewId, int res) {
+
+        ImageView img = getView(viewId);
+        img.setImageResource(res);
+        return img;
+    }
+
 
 }

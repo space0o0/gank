@@ -14,8 +14,5 @@ public interface MainPresenter extends BasePresenter<MainView> {
      */
     void getDayData();
 
-    /**
-     * 获取随机数据
-     */
-    void getRandomData();
+
 }

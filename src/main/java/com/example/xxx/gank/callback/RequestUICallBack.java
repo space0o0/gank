@@ -1,5 +1,8 @@
 package com.example.xxx.gank.callback;
 
+import retrofit2.Call;
+import retrofit2.Response;
+
 /**
  *在协议处理时，界面的显示处理
  * Created by space on 16/3/29.
@@ -18,14 +21,15 @@ public interface RequestUICallBack<T> {
 
     /**
      * 请求错误调用
-     * @param errorCode 错误代码
-     * @param errorData
+     * @param call
+     * @param t
      */
-    void requestError(String errorCode, Object errorData);
+    void requestError(Call call, Throwable t);
 
     /**
      * 请求成功调用
-     * @param data 数据
+     * @param call
+     * @param response
      */
-    void requestSuccess(T data);
+    void requestSuccess(Call call, Response response);
 }

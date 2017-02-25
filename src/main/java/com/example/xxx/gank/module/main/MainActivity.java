@@ -10,16 +10,16 @@ import com.example.xxx.gank.R;
 import com.example.xxx.gank.annotation.ActivityFragmentInject;
 import com.example.xxx.gank.base.BaseActivity;
 import com.example.xxx.gank.bean.DataInfo;
+import com.example.xxx.gank.common.Url;
+import com.example.xxx.gank.http.HttpManager;
 import com.example.xxx.gank.http.gankService;
 import com.example.xxx.gank.module.newdata.NewDataFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 @ActivityFragmentInject(contentViewId = R.layout.activity_main)
 public class MainActivity extends BaseActivity implements NewDataFragment.OnFragmentInteractionListener{
@@ -28,9 +28,7 @@ public class MainActivity extends BaseActivity implements NewDataFragment.OnFrag
     BottomNavigationBar bottomNavigationBar;
 
 
-    Retrofit retrofit;
     gankService gankService;
-    OkHttpClient client;
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -124,6 +122,8 @@ public class MainActivity extends BaseActivity implements NewDataFragment.OnFrag
 
 
     private void getDataInfo() {
+        gankService= HttpManager.getInstance().get(Url.data).create(com.example.xxx.gank.http.gankService.class);
+
         Call<DataInfo> call = gankService.getDataInfo("Android", "5", "1");
 
         call.enqueue(new Callback<DataInfo>() {
@@ -132,6 +132,7 @@ public class MainActivity extends BaseActivity implements NewDataFragment.OnFrag
 
                 DataInfo info = response.body();
 //                text.setText(info.getResults().get(0).getPublishedAt());
+                toast(info.getResults().get(0).getPublishedAt());
 
             }
 
