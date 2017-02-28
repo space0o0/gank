@@ -92,15 +92,15 @@ public class MainActivity extends BaseActivity implements NewDataFragment.OnFrag
 
                         break;
                     case 1:
-                        fragmentTransaction.replace(R.id.content_main, NewDataFragment.newInstance("所有"));
+//                        fragmentTransaction.replace(R.id.content_main, NewDataFragment.newInstance("所有"));
 
                         break;
                     case 2:
-                        fragmentTransaction.replace(R.id.content_main, NewDataFragment.newInstance("待定"));
+//                        fragmentTransaction.replace(R.id.content_main, NewDataFragment.newInstance("待定"));
 
                         break;
                     case 3:
-                        fragmentTransaction.replace(R.id.content_main, NewDataFragment.newInstance("其他"));
+//                        fragmentTransaction.replace(R.id.content_main, NewDataFragment.newInstance("其他"));
 
                         break;
                 }

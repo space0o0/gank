@@ -6,8 +6,7 @@ import java.util.List;
  * Created by space on 2017/2/25.
  */
 
-public class BaseInfo {
-
+public class BaseInfo<T> {
 
     /**
      * category : ["瞎推荐","Android","拓展资源","福利","休息视频","iOS","App"]

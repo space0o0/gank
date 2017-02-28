@@ -1,8 +1,10 @@
 package com.example.xxx.gank.http;
 
+import com.example.xxx.gank.bean.BaseInfo;
 import com.example.xxx.gank.bean.DataInfo;
 import com.example.xxx.gank.bean.DayInfo;
 import com.example.xxx.gank.bean.FundBean;
+import com.example.xxx.gank.bean.test;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -27,7 +29,10 @@ public interface gankService {
      * @return
      */
     @GET("{year}/{month}/{day}")
-    Call<DayInfo> getDayInfo(@Path("year") String year, @Path("month") String month, @Path("day") String day);
+    Call<BaseInfo<DayInfo>> getDayInfo(@Path("year") String year, @Path("month") String month, @Path("day") String day);
+
+    @GET("{year}/{month}/{day}")
+    Call<test> getTest(@Path("year") String year, @Path("month") String month, @Path("day") String day);
 
 
     @GET("{content}/{count}/{page}")

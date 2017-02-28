@@ -31,5 +31,5 @@ public interface RequestUICallBack<T> {
      * @param call
      * @param response
      */
-    void requestSuccess(Call call, Response response);
+    void requestSuccess(Call call, Response<T> response);
 }

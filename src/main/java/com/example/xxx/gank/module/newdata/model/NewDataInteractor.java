@@ -1,5 +1,7 @@
 package com.example.xxx.gank.module.newdata.model;
 
+import com.example.xxx.gank.bean.BaseInfo;
+import com.example.xxx.gank.bean.DayInfo;
 import com.example.xxx.gank.callback.RequestUICallBack;
 
 /**
@@ -19,5 +21,5 @@ public interface NewDataInteractor {
     /**
      * 获取当天内容
      */
-    void getNewData(RequestUICallBack callBack);
+    void getNewData(RequestUICallBack<BaseInfo<DayInfo>> callBack);
 }
